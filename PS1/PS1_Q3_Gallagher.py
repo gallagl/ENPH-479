@@ -47,7 +47,7 @@ phi = 0
 gamma = 0
 t_p   = 1
 
-#%%
+#%% phi = 0
 
 dt = 0.001
 
@@ -88,7 +88,49 @@ axs[1,1].grid(True)
 axs[2,1].plot(ts,ans3[:,2])
 axs[2,1].grid(True)
 
+#%% phi = pi/2
+
+phi = np.pi/2
+
+dt = 0.001
+
+ts = np.arange(0,10,dt)
+
+y_init = omega(ts)
+
+w0 = 1
+
+ans1 = odestepper("RK4", derivs, np.copy(y_init), ts)
+
+w0 = 2
+
+ans2 = odestepper("RK4", derivs, np.copy(y_init), ts)
+
+w0 = 8
+
+ans3 = odestepper("RK4", derivs, np.copy(y_init), ts)
+
+fig, axs = plt.subplots(3,2,dpi = 200,sharex=True)
+    
+axs[0,0].plot(ts,ans1[:,1])
+axs[0,0].grid(True)
+
+axs[1,0].plot(ts,ans2[:,1])
+axs[1,0].grid(True)
+
+axs[2,0].plot(ts,ans3[:,1])
+axs[2,0].grid(True)
 
 
+axs[0,1].plot(ts,ans1[:,2])
+axs[0,1].grid(True)
+
+axs[1,1].plot(ts,ans2[:,2])
+axs[1,1].grid(True)
+
+axs[2,1].plot(ts,ans3[:,2])
+axs[2,1].grid(True)
+
+#%%
 
 
